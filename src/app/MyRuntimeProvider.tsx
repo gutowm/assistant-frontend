@@ -13,8 +13,12 @@ const BackendUrl = process.env.BACKEND_URL;
 const MyModelAdapter: ChatModelAdapter = {
   async run({ messages, abortSignal }) {
 
+    let result = new Response(JSON.stringify({ text: "BACKEND_URL is not set" }), {
+    headers: { "Content-Type": "application/json" }
+    });
+
     if (BackendUrl){
-      const result = await fetch("BackendUrl", {
+      result = await fetch(BackendUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -26,10 +30,6 @@ const MyModelAdapter: ChatModelAdapter = {
       // if the user hits the "cancel" button or escape keyboard key, cancel the request
       signal: abortSignal,
       });
-    } else {
-      const result = new Response(JSON.stringify({ text: "Pomidor!" }), {
-      headers: { "Content-Type": "application/json" }
-    });
     }
      
     const data = await result.json();
