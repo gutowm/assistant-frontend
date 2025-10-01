@@ -8,11 +8,11 @@ import {
 } from "@assistant-ui/react";
 
 
-const BackendUrl = process.env.BACKEND_URL;
-
 const MyModelAdapter: ChatModelAdapter = {
   async run({ messages, abortSignal }) {
 
+    const BackendUrl = process.env.BACKEND_URL;
+    console.log("BackendUrl is:", BackendUrl);
     // We are expecting only text messages from backend
     const lastMessageContentPart = messages[messages.length - 1].content[0];
     let payloadData: { text: string } | null = null;
