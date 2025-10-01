@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-# add assistant-ui
+// add assistant-ui
+import type { ReactNode } from "react";
 import { MyRuntimeProvider } from "@/app/MyRuntimeProvider";
 
 const geistSans = Geist({
