@@ -7,10 +7,14 @@ import {
   type ChatModelAdapter,
 } from "@assistant-ui/react";
 
+
+const BackendUrl = process.env.BACKEND_URL;
+
 const MyModelAdapter: ChatModelAdapter = {
   async run({ messages, abortSignal }) {
 
-/*    const result = await fetch("http://localhost:8000", {
+    if (BackendUrl){
+      const result = await fetch("BackendUrl", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -21,15 +25,13 @@ const MyModelAdapter: ChatModelAdapter = {
       }),
       // if the user hits the "cancel" button or escape keyboard key, cancel the request
       signal: abortSignal,
+      });
+    } else {
+      const result = new Response(JSON.stringify({ text: "Pomidor!" }), {
+      headers: { "Content-Type": "application/json" }
     });
-*/    
-
-    // Simulate backend response
-    
-    const result = new Response(JSON.stringify({ text: "Pomidor!" }), {
-        headers: { "Content-Type": "application/json" }
-    });
-    
+    }
+     
     const data = await result.json();
     
     return {
