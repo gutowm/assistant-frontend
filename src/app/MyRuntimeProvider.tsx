@@ -7,11 +7,18 @@ import {
   type ChatModelAdapter,
 } from "@assistant-ui/react";
 
+/*
+// read BACKEND_URL injected at start
+import getConfig from 'next/config';
+const { publicRuntimeConfig } = getConfig();
+const BackendUrl = publicRuntimeConfig.BACKEND_URL;
+*/
+const BackendUrl = process.env['NEXT_PUBLIC_BACKEND_URL'];
 
 const MyModelAdapter: ChatModelAdapter = {
   async run({ messages, abortSignal }) {
 
-    const BackendUrl = process.env.BACKEND_URL;
+// const BackendUrl = process.env.BACKEND_URL;
     console.log("BackendUrl is:", BackendUrl);
     // We are expecting only text messages from backend
     const lastMessageContentPart = messages[messages.length - 1].content[0];
