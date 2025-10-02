@@ -7,13 +7,7 @@ import {
   type ChatModelAdapter,
 } from "@assistant-ui/react";
 
-/*
-// read BACKEND_URL injected at start
-import getConfig from 'next/config';
-const { publicRuntimeConfig } = getConfig();
-const BackendUrl = publicRuntimeConfig.BACKEND_URL;
-*/
-const BackendUrl = process.env['NEXT_PUBLIC_BACKEND_URL'];
+const BackendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 const MyModelAdapter: ChatModelAdapter = {
   async run({ messages, abortSignal }) {
